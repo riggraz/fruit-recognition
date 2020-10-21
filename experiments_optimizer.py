@@ -80,6 +80,7 @@ def plot_val_acc(epochs=100):
   plt.ylabel('accuracy')
   plt.xlabel('epoch')
   plt.legend(["{}".format(optimizer) for optimizer in optimizers], loc='upper left')
+  plt.savefig('experiments_optimizer_plot.png')
   plt.show()
 
   # restore previous values
