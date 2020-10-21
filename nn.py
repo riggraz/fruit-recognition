@@ -47,9 +47,19 @@ def train(config, hyperparams, network):
 
   model = models.Sequential(network_architecture)
 
+  optimizer = None
+  if (hyperparams['optimizer'] == 'adam'):
+    optimizer = optimizers.Adam(learning_rate=hyperparams['learning_rate'])
+  elif (hyperparams['optimizer'] == 'adamax'):
+    optimizer = optimizers.Adamax(learning_rate=hyperparams['learning_rate'])
+  elif (hyperparams['optimizer'] == 'sgd'):
+    optimizer = optimizers.SGD(learning_rate=hyperparams['learning_rate'])
+  else:
+    optimizer = optimizers.Adam(learning_rate=hyperparams['learning_rate']) # default optimizer
+
   # compile model
   model.compile(
-    optimizer=optimizers.Adam(learning_rate=hyperparams['learning_rate']),
+    optimizer=optimizer,
     loss=losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=['accuracy'],
   )

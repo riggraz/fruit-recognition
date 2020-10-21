@@ -3,7 +3,7 @@ from tensorflow.keras import layers, callbacks, models
 config = {}
 
 config['train_ds_path'] = './dataset/Training'
-config['test_ds_path'] = './dataset/Test/'
+config['test_ds_path'] = './dataset/Test'
 
 config['img_size'] = (32, 32)
 config['img_color_mode'] = 'rgb'
@@ -13,6 +13,7 @@ hyperparams = {}
 hyperparams['validation_split'] = 0.2
 hyperparams['batch_size'] = 32
 hyperparams['epochs'] = 1000
+hyperparams['optimizer'] = 'adam'
 hyperparams['learning_rate'] = 0.001
 
 network = {}
