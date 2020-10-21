@@ -1,26 +1,40 @@
 from config import config, hyperparams, network
 from nn import train, evaluate
+import numpy
 
-losses = []
+all_losses = []
+avg_losses = []
+variances = []
 
-for batch_size in [16, 32, 64, 128, 256]:
-  print("----- batch_size = ", batch_size, " -----")
+batch_sizes = [512, 8]
+
+for batch_size in batch_sizes:
   hyperparams['batch_size'] = batch_size
 
-  average_loss = 0.0
+  current_losses = []
   repetitions = 10
 
   for i in range(repetitions):
-    print("Repetition ", i)
+    print("batch size ", batch_size, ", repetition", i)
     model, history = train(config, hyperparams, network)
     loss = evaluate(model, config)
 
     print("test 0-1 loss: ", loss)
 
-    average_loss += loss
+    current_losses.append(loss)
 
-  average_loss /= repetitions
+  all_losses.append(current_losses)
+  avg_losses.append(numpy.average(current_losses))
+  variances.append(numpy.var(current_losses))
 
-  losses.append(average_loss)
+  print("----------")
+  print("batch size:", batch_size)
+  print("avg loss:", numpy.average(current_losses))
+  print("variance:", numpy.var(current_losses))
+  print(current_losses)
+  print("----------")
 
-print(losses)
+print(batch_sizes)
+print(avg_losses)
+print(variances)
+print(all_losses)
