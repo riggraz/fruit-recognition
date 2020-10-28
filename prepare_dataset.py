@@ -23,7 +23,7 @@ import os
 import shutil
 
 src_dir = './Fruits-360/'
-dst_dir = './dataset2/'
+dst_dir = './prepared-dataset/'
 
 labels = [
   'Apple',
