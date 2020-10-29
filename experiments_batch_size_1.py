@@ -23,10 +23,10 @@ histories = []
 
 batch_sizes = [8, 16, 32, 64, 128, 256, 512]
 
-N = 10
+N = 5
 
 for batch_size in batch_sizes:
-  config['batch_size'] = batch_size
+  hyperparams['batch_size'] = batch_size
 
   current_epochs_durations = []
   current_epochs_number = []
