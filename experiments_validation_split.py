@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 histories = []
 
-splits = [0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+splits = [0.1, 0.2, 0.3, 0.4, 0.5]
 
 for validation_split in splits:
   print("----- Validation Split ", validation_split, "-----")
