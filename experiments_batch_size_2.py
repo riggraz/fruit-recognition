@@ -6,7 +6,7 @@ all_losses = []
 avg_losses = []
 variances = []
 
-batch_sizes = [512, 8]
+batch_sizes = [8, 16, 32, 64, 128, 256, 512]
 
 for batch_size in batch_sizes:
   hyperparams['batch_size'] = batch_size
