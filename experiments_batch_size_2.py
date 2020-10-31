@@ -38,3 +38,9 @@ print(batch_sizes)
 print(avg_losses)
 print(variances)
 print(all_losses)
+
+with open('experiments_batch_size_2_output.txt', 'w') as f:
+  print("batch sizes:", batch_sizes, file=f)
+  print("avg losses:", avg_losses, file=f)
+  print("variances:", variances, file=f)
+  print("all losses:", all_losses, file=f)
