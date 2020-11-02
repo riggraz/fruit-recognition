@@ -102,29 +102,33 @@ def predict_and_show_errors(model, config):
     color_mode=config['img_color_mode'],
   )
 
-  predictions = model.predict(test_ds, verbose=0)
-
   wrong_predictions = []
-
   i = 0
+
   for image, label in test_ds.unbatch():
     correct_label = label.numpy()
-    prediction = np.argmax(predictions[i])
 
-    # print("Label:", correct_label, " |", "Prediction:", prediction)
+    image = tf.keras.preprocessing.image.img_to_array(image)
+    image = tf.expand_dims(image, 0)
+    prediction = model.predict(image)
+    predicted_label = np.argmax(prediction)
 
-    if correct_label != prediction:
-      wrong_predictions.append((image, correct_label, prediction))
+    print("Label:", correct_label, " |", "Prediction:", predicted_label)
+
+    if correct_label != predicted_label:
+      wrong_predictions.append((image, correct_label, predicted_label))
 
     i = i + 1
 
+  print("Wrong predictions #:", len(wrong_predictions))
+
   plt.figure(figsize=(10, 10))
   i = 0
-  for image, correct_label, prediction in wrong_predictions:
+  for image, correct_label, predicted_label in wrong_predictions:
     if i == 9: break
     ax = plt.subplot(3, 3, i + 1)
-    plt.imshow(image.numpy().astype("uint8"))
-    plt.title("{} / {}".format(test_ds.class_names[prediction], test_ds.class_names[correct_label]))
+    plt.imshow(np.squeeze(image).astype("uint8"))
+    plt.title("{} / {}".format(test_ds.class_names[predicted_label], test_ds.class_names[correct_label]))
     plt.axis("off")
     i = i + 1
   plt.show()
