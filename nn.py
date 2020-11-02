@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import tensorflow as tf
 
 from tensorflow import keras
@@ -92,3 +93,38 @@ def evaluate(model, config):
   
   # returns 0-1 loss
   return 1 - test_acc
+
+def predict_and_show_errors(model, config):
+  # load test set
+  test_ds = preprocessing.image_dataset_from_directory(
+    config['test_ds_path'],
+    image_size=config['img_size'],
+    color_mode=config['img_color_mode'],
+  )
+
+  predictions = model.predict(test_ds, verbose=0)
+
+  wrong_predictions = []
+
+  i = 0
+  for image, label in test_ds.unbatch():
+    correct_label = label.numpy()
+    prediction = np.argmax(predictions[i])
+
+    # print("Label:", correct_label, " |", "Prediction:", prediction)
+
+    if correct_label != prediction:
+      wrong_predictions.append((image, correct_label, prediction))
+
+    i = i + 1
+
+  plt.figure(figsize=(10, 10))
+  i = 0
+  for image, correct_label, prediction in wrong_predictions:
+    if i == 9: break
+    ax = plt.subplot(3, 3, i + 1)
+    plt.imshow(image.numpy().astype("uint8"))
+    plt.title("{} / {}".format(test_ds.class_names[prediction], test_ds.class_names[correct_label]))
+    plt.axis("off")
+    i = i + 1
+  plt.show()
