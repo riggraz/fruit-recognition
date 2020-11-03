@@ -5,4 +5,4 @@ model, history = train(config, hyperparams, network)
 loss = evaluate(model, config)
 print("test 0-1 loss: ", loss)
 
-predict_and_show_errors(model, config)
+# predict_and_show_errors(model, config)
