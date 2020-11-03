@@ -1,4 +1,4 @@
-# Statistical Methods for Machine Learning (2019/2020) - Project #3 on NN
+# Statistical Methods for Machine Learning (2019/2020) - Project on neural networks
 
 ## Repository structure
 
