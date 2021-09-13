@@ -1,4 +1,8 @@
-# Statistical Methods for Machine Learning (2019/2020) - Project on neural networks
+# Fruit image classification with convolutional neural networks
+
+Project for the exam Statistical Methods for Machine Learning @ UniMI.
+
+For additional information see the related report.
 
 ## Repository structure
 
