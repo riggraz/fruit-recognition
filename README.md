@@ -2,7 +2,7 @@
 
 Project for the exam Statistical Methods for Machine Learning @ UniMI.
 
-For additional information see the related report.
+For additional information see the [related report](project-report.pdf).
 
 ## Repository structure
 
